@@ -1,0 +1,32 @@
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>
+
+<div class="filters-container">
+
+  <app-filter-list
+    [filters]="filters()"
+    [loading]="isLoading()"
+    (onAdd)="openCreateDialog()"
+    (onEdit)="openEditDialog($event)"
+    (onDelete)="handleDelete($event)"
+    (onToggleActive)="handleToggleActive($event)">
+  </app-filter-list>
+
+  <p-dialog
+    [(visible)]="displayDialog"
+    [header]="isEditMode() ? 'Modifier le filtre' : 'Nouveau filtre Snapchat'"
+    [modal]="true"
+    [style]="{ width: '500px' }"
+    [closable]="true"
+    [draggable]="false"
+    (onHide)="closeDialog()">
+
+    <app-filter-form
+      [filter]="selectedFilter()"
+      (onSave)="handleSave($event)"
+      (onCancel)="closeDialog()">
+    </app-filter-form>
+
+  </p-dialog>
+
+</div>

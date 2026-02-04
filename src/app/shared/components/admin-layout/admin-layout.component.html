@@ -1,0 +1,36 @@
+<div class="admin-layout">
+  <p-sidebar [(visible)]="sidebarVisible" [modal]="false" [dismissible]="true" styleClass="w-20rem">
+    <ng-template pTemplate="header">
+      <div class="flex align-items-center gap-2">
+        <i class="pi pi-shield text-primary text-2xl"></i>
+        <span class="font-bold text-xl">Unblur-IT</span>
+      </div>
+    </ng-template>
+
+    <div class="flex flex-column gap-2 mt-4">
+      <p-button label="Dashboard" icon="pi pi-home" routerLink="/dashboard" routerLinkActive="active-link" [text]="true"
+        styleClass="w-full text-left"></p-button>
+      <p-button label="Challenges" icon="pi pi-image" routerLink="/challenges" routerLinkActive="active-link"
+        [text]="true" styleClass="w-full text-left"></p-button>
+      <p-button label="Filtres Snapchat" icon="pi pi-camera" routerLink="/filters" routerLinkActive="active-link"
+        [text]="true" styleClass="w-full text-left"></p-button>
+    </div>
+  </p-sidebar>
+
+  <div class="main-content">
+    <p-toolbar styleClass="mb-4 shadow-1 border-none border-noround">
+      <div class="p-toolbar-group-start">
+        <p-button icon="pi pi-bars" (onClick)="sidebarVisible = true" [text]="true"></p-button>
+      </div>
+      <div class="p-toolbar-group-end gap-3">
+        <span class="font-medium mr-2">{{ authService.currentUser()?.username }}</span>
+        <p-button icon="pi pi-power-off" severity="danger" [rounded]="true" [text]="true"
+          (onClick)="logout()"></p-button>
+      </div>
+    </p-toolbar>
+
+    <div class="p-4">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

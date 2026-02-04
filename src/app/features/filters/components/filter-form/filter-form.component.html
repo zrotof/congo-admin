@@ -1,0 +1,116 @@
+<form [formGroup]="filterForm" (ngSubmit)="submit()" class="filter-form">
+
+  <!-- Image Upload -->
+  <div class="field">
+    <label>Image du filtre</label>
+    
+    <div class="image-upload-area">
+      <!-- Aperçu de l'image -->
+      <div class="image-preview" *ngIf="imagePreview">
+        <img [src]="imagePreview" alt="Aperçu" />
+        <button 
+          type="button" 
+          class="remove-btn" 
+          (click)="removeImage()"
+          pTooltip="Supprimer">
+          <i class="pi pi-times"></i>
+        </button>
+      </div>
+
+      <!-- Zone d'upload -->
+      <div class="upload-zone" *ngIf="!imagePreview">
+        <p-fileUpload
+          mode="basic"
+          name="image"
+          accept="image/*"
+          [maxFileSize]="5000000"
+          chooseLabel="Choisir une image"
+          chooseIcon="pi pi-image"
+          (onSelect)="onFileSelect($event)"
+          [auto]="false">
+        </p-fileUpload>
+        <p class="upload-hint">PNG, JPG ou GIF (max 5MB)</p>
+      </div>
+    </div>
+
+    <small class="hint">Image de prévisualisation affichée sur le site public</small>
+  </div>
+
+  <!-- Nom du filtre -->
+  <div class="field">
+    <label for="name">Nom du filtre</label>
+    <input
+      pInputText
+      id="name"
+      formControlName="name"
+      placeholder="Ex: Filtre Campagne 2024"
+      class="w-full" />
+    <small class="hint">Optionnel - Pour identifier facilement le filtre</small>
+    <small 
+      class="p-error" 
+      *ngIf="nameControl?.invalid && nameControl?.touched">
+      Maximum 100 caractères
+    </small>
+  </div>
+
+  <!-- Lien Snapchat -->
+  <div class="field">
+    <label for="snapchatUrl">Lien Snapchat *</label>
+    <div class="p-inputgroup">
+      <span class="p-inputgroup-addon">
+        <i class="pi pi-link"></i>
+      </span>
+      <input
+        pInputText
+        id="snapchatUrl"
+        formControlName="snapchatUrl"
+        placeholder="https://snapchat.com/unlock/?type=..."
+        class="w-full" />
+    </div>
+    <small class="hint">Lien de partage du filtre Snapchat</small>
+    <small 
+      class="p-error" 
+      *ngIf="snapchatUrlControl?.errors?.['required'] && snapchatUrlControl?.touched">
+      Le lien Snapchat est requis
+    </small>
+  </div>
+
+  <!-- Statut Actif -->
+  <div class="field">
+    <div class="switch-field">
+      <p-toggleswitch formControlName="isActive" inputId="isActive" />
+      <label for="isActive">
+        <span class="switch-label">Filtre actif</span>
+        <span class="switch-hint">
+          {{ filterForm.get('isActive')?.value ? 'Visible sur le site public' : 'Masqué du site public' }}
+        </span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Info Box (mode édition) -->
+  <div class="info-box" *ngIf="isEditMode && filter">
+    <i class="pi pi-info-circle"></i>
+    <div class="info-content">
+      <p><strong>Utilisations :</strong> {{ filter.usageCount | number }} fois</p>
+      <p><strong>Créé le :</strong> {{ filter.createdAt | date:'dd/MM/yyyy à HH:mm' }}</p>
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div class="form-actions">
+    <p-button
+      label="Annuler"
+      severity="secondary"
+      icon="pi pi-times"
+      (onClick)="onCancel.emit()">
+    </p-button>
+    <p-button
+      [label]="isEditMode ? 'Mettre à jour' : 'Créer'"
+      type="submit"
+      [icon]="isEditMode ? 'pi pi-check' : 'pi pi-plus'"
+      [disabled]="filterForm.invalid">
+    </p-button>
+  </div>
+
+</form>

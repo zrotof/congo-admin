@@ -1,0 +1,51 @@
+<div class="p-4">
+  <h1 class="text-900 mb-4">Tableau de bord</h1>
+
+  <div class="grid">
+    <div class="col-12 md:col-6 lg:col-3">
+      <div class="card shadow-1 p-3 border-round bg-white">
+        <div class="flex justify-content-between mb-3">
+          <div>
+            <span class="block text-500 font-medium mb-3">Challenges Actifs</span>
+            <div class="text-900 font-medium text-xl">{{ stats().activeChallenges }}</div>
+          </div>
+          <div class="flex align-items-center justify-content-center bg-blue-100 border-round" style="width:2.5rem;height:2.5rem">
+            <i class="pi pi-flag text-blue-500 text-xl"></i>
+          </div>
+        </div>
+        <span class="text-green-500 font-medium">En cours de diffusion</span>
+      </div>
+    </div>
+
+    <div class="col-12 md:col-6 lg:col-3">
+      <div class="card shadow-1 p-3 border-round bg-white">
+        <div class="flex justify-content-between mb-3">
+          <div>
+            <span class="block text-500 font-medium mb-3">Total Clics</span>
+            <div class="text-900 font-medium text-xl">{{ stats().totalClicks | number }}</div>
+          </div>
+          <div class="flex align-items-center justify-content-center bg-orange-100 border-round" style="width:2.5rem;height:2.5rem">
+            <i class="pi pi-mouse text-orange-500 text-xl"></i>
+          </div>
+        </div>
+        <span class="text-500 text-sm">Cumul sur tous les challenges</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid mt-4">
+    <div class="col-12 lg:col-8">
+      <div class="card shadow-1 p-4 border-round bg-white">
+        <h3 class="mt-0 mb-4">Performance des Challenges</h3>
+        <p-chart type="bar" [data]="chartData" [options]="chartOptions"></p-chart>
+      </div>
+    </div>
+    
+    <div class="col-12 lg:col-4">
+      <div class="card shadow-1 p-4 border-round bg-white">
+        <h3 class="mt-0 mb-4">Répartition</h3>
+        <p-chart type="doughnut" [data]="pieData"></p-chart>
+      </div>
+    </div>
+  </div>
+</div>

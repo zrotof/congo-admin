@@ -1,0 +1,46 @@
+<form [formGroup]="challengeForm" (ngSubmit)="submit()" class="flex flex-column gap-4 py-3">
+
+    <div class="flex align-items-center justify-content-between p-3 border-1 surface-border border-round bg-gray-50">
+        <div class="flex flex-column gap-1">
+            <label class="font-bold">Statut du challenge</label>
+            <small class="text-500">Désactiver pour masquer le challenge aux utilisateurs</small>
+        </div>
+        <div class="flex flex-column align-items-end gap-2">
+            <p-toggleswitch formControlName="isActive" />
+            <p-tag [severity]="challengeForm.get('isActive')?.value ? 'success' : 'danger'"
+                [value]="challengeForm.get('isActive')?.value ? 'ACTIF' : 'INACTIF'">
+            </p-tag>
+        </div>
+    </div>
+
+    <div class="flex flex-column gap-2">
+        <label for="title" class="font-bold">Nom du Challenge</label>
+        <input pInputText id="title" formControlName="title" placeholder="Ex: Campagne Promo Janvier" />
+    </div>
+
+    <div class="flex flex-column gap-2">
+        <label for="clicks" class="font-bold">Objectif de clics</label>
+        <p-inputNumber id="clicks" formControlName="targetViews" [min]="1" [showButtons]="true" suffix=" clics">
+        </p-inputNumber>
+    </div>
+
+    <div class="flex flex-column gap-2">
+        <label class="font-bold">Image du Challenge</label>
+
+        <div *ngIf="imagePreview" class="mb-2 text-center border-round overflow-hidden border-1 surface-border">
+            <img [src]="imagePreview" alt="Preview" style="max-height: 200px; width: auto;" />
+        </div>
+
+        <p-fileUpload mode="basic" chooseLabel="Choisir une image" accept="image/*" maxFileSize="2000000"
+            (onSelect)="onFileSelect($event)" styleClass="p-button-outlined w-full">
+        </p-fileUpload>
+        <small class="text-500">Format recommandé : 1080x1080px (Max 2Mo)</small>
+    </div>
+
+    <div class="flex justify-content-end gap-2 mt-4">
+        <p-button label="Annuler" severity="secondary" [text]="true" (onClick)="onCancel.emit()"></p-button>
+        <p-button label="Enregistrer" icon="pi pi-check"
+            [disabled]="challengeForm.invalid || (!selectedFile && !challenge)" (onClick)="submit()">
+        </p-button>
+    </div>
+</form>

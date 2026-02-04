@@ -1,0 +1,23 @@
+// Variables locales au layout
+$sidebar-bg: var(--surface-card);
+$main-bg: var(--surface-ground);
+
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: $main-bg;
+
+  .main-content {
+    flex: 1;
+    width: 100%;
+    transition: margin-left 0.3s ease;
+  }
+
+  // Style pour le bouton actif dans le menu
+  ::ng-deep .active-link {
+    background: var(--primary-100) !important;
+    color: var(--primary-700) !important;
+    border-left: 4px solid var(--primary-500);
+    border-radius: 0;
+  }
+}

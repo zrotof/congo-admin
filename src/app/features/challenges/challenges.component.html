@@ -1,0 +1,13 @@
+<app-challenge-list [challenges]="challenges()" [loading]="isLoading()" (onAdd)="openCreateDialog()"
+    (onEdit)="openEditDialog($event)" (onDelete)="handleDelete($event)">
+</app-challenge-list>
+
+<p-dialog [(visible)]="displayDialog" [header]="isEditMode() ? 'Modifier le challenge' : 'Nouveau challenge'"
+    [modal]="true" [style]="{width: '50vw'}" (onHide)="resetSelection()">
+
+    <app-challenge-form [challenge]="selectedChallenge()" (onSave)="handleSave($event)"
+        (onCancel)="displayDialog = false">
+    </app-challenge-form>
+</p-dialog>
+
+<p-toast></p-toast>

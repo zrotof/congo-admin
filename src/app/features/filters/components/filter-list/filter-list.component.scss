@@ -1,0 +1,126 @@
+.filter-list {
+  .list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    .header-info {
+      h2 {
+        margin: 0 0 0.25rem 0;
+        font-size: 1.5rem;
+      }
+
+      .subtitle {
+        margin: 0;
+        color: var(--text-color-secondary);
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  // Image thumbnail
+  .filter-image {
+    .thumbnail {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 2px solid var(--surface-border);
+    }
+
+    .no-image {
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--surface-100);
+      border-radius: 8px;
+      border: 2px dashed var(--surface-border);
+
+      i {
+        font-size: 1.25rem;
+        color: var(--text-color-secondary);
+      }
+    }
+  }
+
+  .filter-name {
+    span {
+      font-weight: 500;
+    }
+  }
+
+  .snapchat-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    .link-text {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-size: 0.9rem;
+      word-break: break-all;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .usage-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--surface-100);
+    padding: 0.35rem 0.75rem;
+    border-radius: 20px;
+    font-weight: 600;
+
+    i {
+      font-size: 0.85rem;
+      color: var(--primary-color);
+    }
+  }
+
+  .action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 0.25rem;
+  }
+
+  .empty-state {
+    padding: 3rem !important;
+
+    .empty-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      text-align: center;
+
+      i {
+        font-size: 3rem;
+        color: var(--text-color-secondary);
+        margin-bottom: 0.5rem;
+      }
+
+      h3 {
+        margin: 0;
+        font-size: 1.25rem;
+      }
+
+      p {
+        margin: 0 0 1rem 0;
+        color: var(--text-color-secondary);
+      }
+    }
+  }
+
+  .text-center {
+    text-align: center;
+  }
+}

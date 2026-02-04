@@ -1,0 +1,50 @@
+<div class="app-container" [class.sidebar-collapsed]="isCollapsed()">
+  
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <i class="pi pi-bolt logo-icon"></i>
+      <span class="project-name" *ngIf="!isCollapsed()">Unblur IT</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a routerLink="/dashboard" routerLinkActive="active" class="nav-item">
+        <i class="pi pi-home"></i>
+        <span *ngIf="!isCollapsed()">Tableau de bord</span>
+      </a>
+      <a routerLink="/challenges" routerLinkActive="active" class="nav-item">
+        <i class="pi pi-images"></i>
+        <span *ngIf="!isCollapsed()">Challenges</span>
+      </a>
+      <a routerLink="/filtres" routerLinkActive="active" class="nav-item">
+        <i class="pi pi-camera"></i>
+        <span *ngIf="!isCollapsed()">Filtres Snapchat</span>
+      </a>
+      </nav>
+  </aside>
+
+  <div class="main-wrapper">
+    
+    <header class="topbar">
+      <div class="header-left">
+        <button (click)="toggleSidebar()" class="toggle-btn" title="Réduire/Afficher la barre">
+          <i [class]="isCollapsed() ? 'pi pi-bars' : 'pi pi-align-left'"></i>
+        </button>
+      </div>
+
+      <div class="header-right">
+        <div class="user-profile">
+          <span class="user-info">
+            {{user().username}}
+          </span>
+          <button (click)="onLogout()" class="logout-btn" title="Se déconnecter">
+            <i class="pi pi-sign-out"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="content-area">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

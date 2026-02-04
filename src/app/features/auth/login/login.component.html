@@ -1,0 +1,31 @@
+<div class="flex align-items-center justify-content-center min-h-screen surface-ground p-4">
+    <p-card header="Unblur-IT Admin" subheader="Connexion au panel de gestion" [style]="{ width: '400px' }">
+        
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="flex flex-column gap-3">
+            
+            <div class="flex flex-column gap-2">
+                <label for="email">Email Professionnel</label>
+                <input pInputText id="email" formControlName="email" placeholder="samuel@it-service.cm" />
+            </div>
+
+            <div class="flex flex-column gap-2">
+                <label for="password">Mot de passe</label>
+                <p-password id="password" formControlName="password" [feedback]="false" [toggleMask]="true" styleClass="w-full" inputStyleClass="w-full"></p-password>
+            </div>
+
+            @if (errorMessage()) {
+                <p-message severity="error" [text]="errorMessage()!" styleClass="w-full"></p-message>
+            }
+
+            <p-button label="Se connecter" 
+                      icon="pi pi-sign-in" 
+                      type="submit" 
+                      [loading]="isLoading()" 
+                      [disabled]="loginForm.invalid"
+                      styleClass="w-full mt-2">
+            </p-button>
+
+        </form>
+
+    </p-card>
+</div>

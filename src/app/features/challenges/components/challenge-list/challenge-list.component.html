@@ -1,0 +1,60 @@
+<div class="card shadow-sm border-round p-4 bg-white">
+    <div class="flex justify-content-between align-items-center mb-4">
+        <h2 class="m-0 text-900">Liste des Challenges</h2>
+        <p-button label="Nouveau Challenge" icon="pi pi-plus" severity="success" (onClick)="onAdd.emit()">
+        </p-button>
+    </div>
+
+    <p-table [value]="challenges" [loading]="loading" [paginator]="true" [rows]="10" responsiveLayout="scroll"
+        styleClass="p-datatable-sm p-datatable-striped">
+
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 80px">Aperçu</th>
+                <th>Titre</th>
+                <th>Progression</th>
+                <th class="text-center">Statut</th>
+                <th class="text-right" style="width: 120px">Actions</th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-challenge>
+            <tr>
+                <td>
+                    <img [src]="challenge.imageUrl" [alt]="challenge.title" width="50" class="shadow-1 border-round" />
+                </td>
+                <td class="font-bold">{{ challenge.title }}</td>
+                <td>
+                    <div class="progress-info">
+                        <span>{{ challenge.currentViews }} / {{ challenge.targetViews }}</span>
+                        <p-progressBar [value]="(challenge.currentViews / challenge.targetViews) * 100"
+                            [showValue]="false" styleClass="progress-mini">
+                        </p-progressBar>
+                    </div>
+                </td>
+                <td class="text-center">
+                    <p-tag [severity]="getSeverity(challenge.isActive)"
+                        [value]="challenge.isActive ? 'Actif' : 'En pause'">
+                    </p-tag>
+                </td>
+                <td class="text-right">
+                    <p-button icon="pi pi-pencil" [rounded]="true" [text]="true" severity="warn" pTooltip="Modifier"
+                        (onClick)="onEdit.emit(challenge)">
+                    </p-button>
+
+                    <p-button icon="pi pi-trash" [rounded]="true" [text]="true" severity="danger" pTooltip="Supprimer"
+                        (onClick)="onDelete.emit(challenge.id)">
+                    </p-button>
+                </td>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="5" class="text-center p-4 text-500">
+                    Aucun challenge trouvé. Commencez par en créer un !
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
