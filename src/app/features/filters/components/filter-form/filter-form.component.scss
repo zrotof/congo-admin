@@ -20,6 +20,28 @@
 
     .p-error {
       font-size: 0.85rem;
+      color: var(--red-500);
+    }
+  }
+
+  // Plateforme Radio Buttons
+  .platform-options {
+    display: flex;
+    gap: 2rem;
+    
+    .field-radiobutton {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+
+      .radio-label {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        font-weight: 500;
+      }
     }
   }
 
@@ -27,11 +49,11 @@
   .image-upload-area {
     .image-preview {
       position: relative;
-      width: 150px;
-      height: 150px;
-      border-radius: 12px;
+      width: 120px;
+      height: 120px;
+      border-radius: 8px;
       overflow: hidden;
-      border: 2px solid var(--surface-border);
+      border: 1px solid var(--surface-border);
 
       img {
         width: 100%;
@@ -41,36 +63,32 @@
 
       .remove-btn {
         position: absolute;
-        top: 0.5rem;
-        right: 0.5rem;
-        width: 28px;
-        height: 28px;
+        top: 4px;
+        right: 4px;
+        width: 24px;
+        height: 24px;
         border-radius: 50%;
-        border: none;
-        background: rgba(0, 0, 0, 0.6);
+        background: rgba(0,0,0,0.6);
         color: white;
+        border: none;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: background 0.2s;
-
+        
         &:hover {
-          background: rgba(220, 53, 69, 0.9);
+          background: var(--red-500);
         }
-
-        i {
-          font-size: 0.85rem;
-        }
+        
+        i { font-size: 0.8rem; }
       }
     }
 
     .upload-zone {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
       gap: 0.5rem;
-
+      
       .upload-hint {
         margin: 0;
         font-size: 0.8rem;
@@ -79,52 +97,43 @@
     }
   }
 
-  // Switch field
+  // Switch
   .switch-field {
     display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
+    align-items: center;
+    gap: 1rem;
 
     label {
       display: flex;
       flex-direction: column;
-      gap: 0.25rem;
       cursor: pointer;
-
-      .switch-label {
-        font-weight: 600;
-      }
 
       .switch-hint {
         font-size: 0.85rem;
         color: var(--text-color-secondary);
+        font-weight: 400;
       }
     }
   }
 
-  // Info box
+  // Info Box
   .info-box {
-    display: flex;
-    gap: 0.75rem;
-    padding: 1rem;
     background: var(--surface-100);
-    border-radius: 8px;
+    padding: 1rem;
+    border-radius: 6px;
     border-left: 4px solid var(--primary-color);
-
-    > i {
+    display: flex;
+    gap: 1rem;
+    
+    i {
       color: var(--primary-color);
-      font-size: 1.25rem;
+      font-size: 1.5rem;
     }
 
-    .info-content {
-      p {
-        margin: 0 0 0.25rem 0;
-        font-size: 0.9rem;
-
-        &:last-child {
-          margin-bottom: 0;
-        }
-      }
+    .info-content p {
+      margin: 0 0 0.25rem 0;
+      font-size: 0.9rem;
+      &:last-child { margin: 0; }
     }
   }
 
@@ -132,7 +141,7 @@
   .form-actions {
     display: flex;
     justify-content: flex-end;
-    gap: 0.75rem;
+    gap: 1rem;
     padding-top: 1rem;
     border-top: 1px solid var(--surface-border);
   }

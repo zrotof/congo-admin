@@ -1,10 +1,12 @@
-export interface SnapFilter {
+export interface Filter {
   id: number;
   name: string | null;
   imageUrl: string | null;
-  snapchatUrl: string;
+  filterUrl: string;
+  platform: string;
   usageCount: number;
   isActive: boolean;
   createdAt?: string;
   updatedAt?: string;
+
 }

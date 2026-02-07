@@ -2,23 +2,23 @@ import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { SnapFilter } from '../models/snap-filter.model';
+import { Filter } from '../models/filter.model';
 import { ApiResponse } from '../models/api-response.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SnapFilterService {
+export class FilterService {
   private http = inject(HttpClient);
-  private readonly API_URL = `${environment.apiUrl}/snapfilters`;
+  private readonly API_URL = `${environment.apiUrl}/filters`;
 
-  filters = signal<SnapFilter[]>([]);
+  filters = signal<Filter[]>([]);
 
   /**
    * Récupère tous les filtres (admin)
    */
-  getAllFilters(): Observable<ApiResponse<SnapFilter[]>> {
-    return this.http.get<ApiResponse<SnapFilter[]>>(this.API_URL, {
+  getAllFilters(): Observable<ApiResponse<Filter[]>> {
+    return this.http.get<ApiResponse<Filter[]>>(this.API_URL, {
       withCredentials: true
     });
   }
@@ -26,8 +26,8 @@ export class SnapFilterService {
   /**
    * Récupère un filtre par ID
    */
-  getFilterById(id: number): Observable<ApiResponse<SnapFilter>> {
-    return this.http.get<ApiResponse<SnapFilter>>(`${this.API_URL}/${id}`, {
+  getFilterById(id: number): Observable<ApiResponse<Filter>> {
+    return this.http.get<ApiResponse<Filter>>(`${this.API_URL}/${id}`, {
       withCredentials: true
     });
   }
@@ -35,8 +35,8 @@ export class SnapFilterService {
   /**
    * Crée un nouveau filtre (FormData pour l'image)
    */
-  createFilter(formData: FormData): Observable<ApiResponse<SnapFilter>> {
-    return this.http.post<ApiResponse<SnapFilter>>(this.API_URL, formData, {
+  createFilter(formData: FormData): Observable<ApiResponse<Filter>> {
+    return this.http.post<ApiResponse<Filter>>(this.API_URL, formData, {
       withCredentials: true
     });
   }
@@ -44,8 +44,8 @@ export class SnapFilterService {
   /**
    * Met à jour un filtre (FormData pour l'image)
    */
-  updateFilter(id: number, formData: FormData): Observable<ApiResponse<SnapFilter>> {
-    return this.http.put<ApiResponse<SnapFilter>>(`${this.API_URL}/${id}`, formData, {
+  updateFilter(id: number, formData: FormData): Observable<ApiResponse<Filter>> {
+    return this.http.put<ApiResponse<Filter>>(`${this.API_URL}/${id}`, formData, {
       withCredentials: true
     });
   }

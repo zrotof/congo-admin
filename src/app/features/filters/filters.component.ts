@@ -4,8 +4,8 @@ import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { MessageService, ConfirmationService } from 'primeng/api';
-import { SnapFilterService } from '../../core/services/snap-filter.service';
-import { SnapFilter } from '../../core/models/snap-filter.model';
+import { FilterService } from '../../core/services/filter.service';
+import { Filter } from '../../core/models/filter.model';
 import { FilterListComponent } from './components/filter-list/filter-list.component';
 import { FilterFormComponent } from './components/filter-form/filter-form.component';
 
@@ -25,17 +25,17 @@ import { FilterFormComponent } from './components/filter-form/filter-form.compon
   styleUrls: ['./filters.component.scss']
 })
 export class FiltersComponent implements OnInit {
-  private filterService = inject(SnapFilterService);
+  private filterService = inject(FilterService);
   private messageService = inject(MessageService);
   private confirmationService = inject(ConfirmationService);
 
   // État des données
-  filters = signal<SnapFilter[]>([]);
+  filters = signal<Filter[]>([]);
   isLoading = signal<boolean>(false);
 
   // État de l'UI
   displayDialog = false;
-  selectedFilter = signal<SnapFilter | null>(null);
+  selectedFilter = signal<Filter | null>(null);
   isEditMode = signal<boolean>(false);
 
   ngOnInit(): void {
@@ -67,7 +67,7 @@ export class FiltersComponent implements OnInit {
     this.displayDialog = true;
   }
 
-  openEditDialog(filter: SnapFilter): void {
+  openEditDialog(filter: Filter): void {
     this.isEditMode.set(true);
     this.selectedFilter.set(filter);
     this.displayDialog = true;
@@ -155,7 +155,7 @@ export class FiltersComponent implements OnInit {
     });
   }
 
-  handleToggleActive(filter: SnapFilter): void {
+  handleToggleActive(filter: Filter): void {
     const newStatus = !filter.isActive;
     
     // Créer un FormData avec juste isActive

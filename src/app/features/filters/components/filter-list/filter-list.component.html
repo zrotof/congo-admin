@@ -6,29 +6,23 @@
       <h2>Gestion des Filtres Snapchat</h2>
       <p class="subtitle">Gérez les filtres Snapchat de la campagne</p>
     </div>
-    <p-button
-      label="Nouveau Filtre"
-      icon="pi pi-plus"
-      (onClick)="onAdd.emit()">
+    <p-button label="Nouveau Filtre" icon="pi pi-plus" (onClick)="onAdd.emit()">
     </p-button>
   </div>
 
   <!-- Table -->
-  <p-table
-    [value]="filters"
-    [loading]="loading"
-    [paginator]="true"
-    [rows]="10"
-    [showCurrentPageReport]="true"
+  <p-table [value]="filters" [loading]="loading" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
     currentPageReportTemplate="Affichage {first} à {last} sur {totalRecords} filtres"
     styleClass="p-datatable-striped p-datatable-gridlines">
 
     <!-- Header -->
     <ng-template pTemplate="header">
       <tr>
+
+        <th style="width: 80px">Réseaux</th>
         <th style="width: 80px">Image</th>
         <th style="width: 180px">Nom</th>
-        <th>Lien Snapchat</th>
+        <th>Lien</th>
         <th style="width: 120px" class="text-center">Utilisations</th>
         <th style="width: 100px" class="text-center">Statut</th>
         <th style="width: 150px" class="text-center">Actions</th>
@@ -37,15 +31,18 @@
 
     <!-- Body -->
     <ng-template pTemplate="body" let-filter>
+
+
       <tr>
+        <td>
+          <div class="filter-platform">
+            <span>{{ filter.platform }}</span>
+          </div>
+        </td>
         <!-- Image -->
         <td>
           <div class="filter-image">
-            <img 
-              *ngIf="filter.imageUrl" 
-              [src]="filter.imageUrl" 
-              [alt]="filter.name || 'Filtre'"
-              class="thumbnail" />
+            <img *ngIf="filter.imageUrl" [src]="filter.imageUrl" [alt]="filter.name || 'Filtre'" class="thumbnail" />
             <div *ngIf="!filter.imageUrl" class="no-image">
               <i class="pi pi-image"></i>
             </div>
@@ -62,19 +59,10 @@
         <!-- Lien Snapchat -->
         <td>
           <div class="snapchat-link">
-            <a 
-              [href]="filter.snapchatUrl" 
-              target="_blank" 
-              class="link-text"
-              pTooltip="Ouvrir dans Snapchat">
-              {{ filter.snapchatUrl | slice:0:40 }}...
+            <a [href]="filter.snapchatUrl" target="_blank" class="link-text" pTooltip="Ouvrir dans Snapchat">
+              {{ filter.filterUrl | slice:0:40 }}...
             </a>
-            <p-button
-              icon="pi pi-external-link"
-              [rounded]="true"
-              [text]="true"
-              size="small"
-              pTooltip="Ouvrir"
+            <p-button icon="pi pi-external-link" [rounded]="true" [text]="true" size="small" pTooltip="Ouvrir"
               (onClick)="openSnapchatLink(filter.snapchatUrl)">
             </p-button>
           </div>
@@ -83,43 +71,23 @@
         <!-- Utilisations -->
         <td class="text-center">
           <div class="usage-badge">
-            <i class="pi pi-users"></i>
             <span>{{ filter.usageCount | number }}</span>
           </div>
         </td>
 
         <!-- Statut -->
         <td class="text-center">
-          <p-tag
-            [value]="filter.isActive ? 'Actif' : 'Inactif'"
-            [severity]="getSeverity(filter.isActive)">
+          <p-tag [value]="filter.isActive ? 'Actif' : 'Inactif'" [severity]="getSeverity(filter.isActive)">
           </p-tag>
         </td>
 
         <!-- Actions -->
         <td>
           <div class="action-buttons">
-            <p-button
-              icon="pi pi-pencil"
-              [rounded]="true"
-              [text]="true"
-              pTooltip="Modifier"
+            <p-button icon="pi pi-pencil" [rounded]="true" [text]="true" pTooltip="Modifier"
               (onClick)="onEdit.emit(filter)">
             </p-button>
-            <p-button
-              [icon]="filter.isActive ? 'pi pi-eye-slash' : 'pi pi-eye'"
-              [rounded]="true"
-              [text]="true"
-              [severity]="filter.isActive ? 'warn' : 'success'"
-              [pTooltip]="filter.isActive ? 'Désactiver' : 'Activer'"
-              (onClick)="toggleActive(filter)">
-            </p-button>
-            <p-button
-              icon="pi pi-trash"
-              [rounded]="true"
-              [text]="true"
-              severity="danger"
-              pTooltip="Supprimer"
+            <p-button icon="pi pi-trash" [rounded]="true" [text]="true" severity="danger" pTooltip="Supprimer"
               (onClick)="onDelete.emit(filter.id)">
             </p-button>
           </div>
@@ -135,10 +103,7 @@
             <i class="pi pi-camera"></i>
             <h3>Aucun filtre Snapchat</h3>
             <p>Commencez par créer votre premier filtre</p>
-            <p-button
-              label="Créer un filtre"
-              icon="pi pi-plus"
-              (onClick)="onAdd.emit()">
+            <p-button label="Créer un filtre" icon="pi pi-plus" (onClick)="onAdd.emit()">
             </p-button>
           </div>
         </td>
