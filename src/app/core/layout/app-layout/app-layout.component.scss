@@ -10,15 +10,14 @@
   background-color: #f8f9fa;
 }
 
-/* SIDEBAR */
 .sidebar {
   width: 260px;
-  background-color: #1e293b; /* Bleu ardoise foncé pro */
+  background-color: #1e293b;
   color: #ffffff;
   transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
-  box-shadow: 4px 0 10px rgba(0,0,0,0.05);
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.05);
   z-index: 100;
 }
 
@@ -33,13 +32,18 @@
   padding: 0 24px;
   font-weight: bold;
   font-size: 1.2rem;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
-.logo-icon {
-  font-size: 1.5rem;
-  color: #38bdf8;
-  margin-right: 12px;
+  img {
+    width: 120px;
+    height: 26px;
+    object-fit: cover;
+  }
+
+  span{
+    font-weight: 900;
+    font-size: 1.3rem;
+  }
 }
 
 /* NAVIGATION */
@@ -62,9 +66,10 @@
   min-width: 32px;
 }
 
-.nav-item:hover, .nav-item.active {
+.nav-item:hover,
+.nav-item.active {
   color: #ffffff;
-  background-color: rgba(255,255,255,0.05);
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 .nav-item.active {
@@ -73,7 +78,8 @@
 
 /* MAIN CONTENT WRAPPER */
 .main-wrapper {
-  flex: 1; /* Remplit tout l'espace ! */
+  flex: 1;
+  /* Remplit tout l'espace ! */
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -92,11 +98,13 @@
 .content-area {
   flex: 1;
   padding: 2rem;
-  overflow-y: auto; /* Scroll uniquement ici */
+  overflow-y: auto;
+  /* Scroll uniquement ici */
 }
 
 /* BOUTONS */
-.toggle-btn, .logout-btn {
+.toggle-btn,
+.logout-btn {
   background: none;
   border: none;
   cursor: pointer;
@@ -107,7 +115,8 @@
   transition: background 0.2s;
 }
 
-.toggle-btn:hover, .logout-btn:hover {
+.toggle-btn:hover,
+.logout-btn:hover {
   background-color: #f1f5f9;
   color: #0f172a;
 }

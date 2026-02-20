@@ -1,0 +1,12 @@
+// Si tu n'utilises pas PrimeFlex pour les bordures colorées, voici les classes
+.border-left-3 {
+  border-left-width: 4px !important;
+  border-left-style: solid;
+}
+
+// Couleurs personnalisées si besoin (mais les classes PrimeFlex bg-blue-500 etc marchent bien)
+:host ::ng-deep {
+  .p-card {
+    box-shadow: none;
+  }
+}

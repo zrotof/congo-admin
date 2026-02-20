@@ -2,7 +2,12 @@
   
   <aside class="sidebar">
     <div class="sidebar-brand">
-      <span class="project-name" *ngIf="!isCollapsed()"><b>DSN 26</b></span>
+      @if (isCollapsed()) {
+        <span>DSN</span>
+      }
+      @else {
+        <img src="logo-white.png">
+      }
     </div>
 
     <nav class="sidebar-nav">
