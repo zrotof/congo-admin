@@ -72,10 +72,12 @@ export class ChallengeFormComponent implements OnChanges {
 
   submit() {
     if (this.challengeForm.valid) {
+      console.log(this.challengeForm.get('isActive')?.value);
+
       const formData = new FormData();
       formData.append('title', this.challengeForm.get('title')?.value);
       formData.append('targetViews', this.challengeForm.get('targetViews')?.value);
-      formData.append('isActive', this.challengeForm.get('isActive')?.value);
+      formData.append('isActive', String(!!this.challengeForm.get('isActive')?.value));
 
       if (this.selectedFile) {
         formData.append('image', this.selectedFile);

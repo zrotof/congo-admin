@@ -9,7 +9,7 @@
 
             <div class="flex flex-column gap-2">
                 <label for="password">Mot de passe</label>
-                <p-password id="password" formControlName="password" [feedback]="false" [toggleMask]="true" styleClass="w-full" inputStyleClass="w-full"></p-password>
+                <p-password id="password" formControlName="password" placeholder="Entrez votre mot de passe" [feedback]="false" [toggleMask]="true" styleClass="w-full" inputStyleClass="w-full"></p-password>
             </div>
 
             @if (errorMessage()) {

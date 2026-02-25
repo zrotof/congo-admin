@@ -12,6 +12,4 @@ import { ToastModule } from 'primeng/toast';
   ]
 })
 
-export class AppComponent {
-  title = 'unblur-it-admin';
-}
+export class AppComponent {}

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "unblur-it-admin": {
+    "dsn-2026-admin": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/unblur-it-admin",
+            "outputPath": "dist/dsn-2026-admin",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -70,10 +70,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "unblur-it-admin:build:production"
+              "buildTarget": "dsn-2026-admin:build:production"
             },
             "development": {
-              "buildTarget": "unblur-it-admin:build:development"
+              "buildTarget": "dsn-2026-admin:build:development"
             }
           },
           "defaultConfiguration": "development"
